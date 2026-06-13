@@ -9,12 +9,13 @@ Foydalanuvchi parolini tahlil qilib, kuchini baholaydi, maslahat beradi va kuchl
 - 💡 Yaxshilash bo'yicha aniq maslahatlar beradi
 - 🎲 Tasodifiy kuchli parol generatori
 - 🌐 Brauzerda ishlaydigan veb interfeys (Flask)
-- 🟢 Daraja tizimi: Juda zaif → Juda kuchli
+- 🚨 HaveIBeenPwned API — parol real data breach da chiqganmi tekshiradi
+- 🛡️ K-anonymity texnikasi — parol hech qachon to'liq yuborilmaydi
 
 ## 🚀 Ishlatish
 
 ```bash
-pip3 install flask
+pip3 install -r requirements.txt
 python3 app.py
 ```
 
@@ -24,11 +25,23 @@ Keyin brauzerda oching: `http://127.0.0.1:5000`
 
 Kiberxavfsizlikda eng ko'p ishlatiladigan hujum usullaridan biri — **brute force** va **dictionary attack**. Kuchli parol bu hujumlardan himoya qiladi.
 
+`123456` paroli **209,972,844** marta real data breach larda topilgan!
+
+## 🔬 HaveIBeenPwned qanday ishlaydi?
+
+1. Parol SHA-1 algoritmi bilan shifrlanadi
+2. Faqat birinchi 5 ta belgi API ga yuboriladi (**k-anonymity**)
+3. API o'xshash hash larni qaytaradi
+4. Dastur solishtirib, parol buzilganmi aniqlaydi
+5. Parol hech qachon to'liq internet ga yuborilmaydi ✅
+
 ## 🧰 Texnologiyalar
 
 - Python 3
 - Flask (veb framework)
+- HaveIBeenPwned API
 - HTML / CSS
+- SHA-1 kriptografiya
 
 ## 👤 Muallif
 
