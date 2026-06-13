@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parol Tekshiruvchi</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .container { background: #1e293b; border-radius: 16px; padding: 2rem; width: 100%; max-width: 480px; }
+        h1 { font-size: 22px; margin-bottom: 6px; }
+        p.sub { font-size: 13px; color: #94a3b8; margin-bottom: 1.5rem; }
+        input[type="text"] { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #e2e8f0; font-size: 15px; margin-bottom: 10px; }
+        button { width: 100%; padding: 12px; border-radius: 8px; border: none; font-size: 15px; cursor: pointer; margin-bottom: 8px; font-weight: 500; }
+        .btn-check { background: #6366f1; color: white; }
+        .btn-gen { background: #0f172a; color: #94a3b8; border: 1px solid #334155; }
+        .result { margin-top: 1.5rem; padding: 1rem; border-radius: 10px; background: #0f172a; }
+        .level { font-size: 20px; font-weight: bold; margin-bottom: 4px; }
+        .score { font-size: 13px; color: #94a3b8; margin-bottom: 12px; }
+        .bar-bg { background: #334155; border-radius: 99px; height: 8px; margin-bottom: 12px; }
+        .bar { height: 8px; border-radius: 99px; transition: width 0.3s; }
+        .tip { font-size: 13px; color: #fbbf24; margin-top: 4px; }
+        .generated { margin-top: 1rem; padding: 1rem; background: #0f172a; border-radius: 10px; font-family: monospace; font-size: 16px; color: #22c55e; word-break: break-all; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🔐 Parol Tekshiruvchi</h1>
+    <p class="sub">Parolingiz qanchalik xavfsiz?</p>
+
+    <form method="POST">
+        <input type="text" name="password" placeholder="Parolni kiriting..." autocomplete="off">
+        <button type="submit" class="btn-check">Tekshirish</button>
+    </form>
+
+    <form method="POST">
+        <button type="submit" name="generate" value="1" class="btn-gen">Kuchli parol yaratish</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <div class="level" style="color: {{ result.color }}">{{ result.level }}</div>
+        <div class="score">{{ result.score }} / 6 ball</div>
+        <div class="bar-bg">
+            <div class="bar" style="width: {{ (result.score / 6 * 100)|int }}%; background: {{ result.color }};"></div>
+        </div>
+        {% for tip in result.feedback %}
+        <div class="tip">• {{ tip }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if generated %}
+    <div class="generated">{{ generated }}</div>
+    {% endif %}
+</div>
+</body>
+</html>
