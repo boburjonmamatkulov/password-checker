@@ -1,21 +1,19 @@
-# Parol kuchi tekshiruvchi
+# 🔐 Parol Kuchi Tekshiruvchi
 
-Foydalanuvchi parolini tahlil qilib, kuchini baholaydi va yaxshilash bo'yicha maslahat beradi.
+Foydalanuvchi parolini tahlil qilib, kuchini baholaydi, maslahat beradi va kuchli parol yaratib beradi.
 
-## Xususiyatlar
-- Uzunlik tekshiruvi (8+ belgi)
-- Katta va kichik harf tekshiruvi
-- Raqam mavjudligi tekshiruvi
-- Maxsus belgi tekshiruvi
-- Ball tizimi (0-5) va daraja: Zaif → Juda kuchli
+## ✨ Xususiyatlar
 
-## Ishlatish
+- ✅ Parol kuchini 6 balllik tizimda baholaydi
+- 🔴 15+ keng tarqalgan zaif parollarni aniqlaydi
+- 💡 Yaxshilash bo'yicha aniq maslahatlar beradi
+- 🎲 Tasodifiy kuchli parol generatori
+- 🟢 Daraja tizimi: Juda zaif → Juda kuchli
+
+## 🚀 Ishlatish
+
 ```bash
 python checker.py
 ```
 
-## Texnologiyalar
-- Python 3
-
-## Mualllif
-Boburjon Mamatqulov — kiberxavfsizlikka qiziquvchi talaba
+## 📋 Menyu
