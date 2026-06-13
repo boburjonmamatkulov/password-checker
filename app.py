@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 import random
 import string
+import hashlib
+import requests
 
 app = Flask(__name__)
 
@@ -13,6 +15,21 @@ WEAK_PASSWORDS = [
 def generate_password(length=12):
     chars = string.ascii_letters + string.digits + "!@#$%^&*"
     return ''.join(random.choice(chars) for _ in range(length))
+
+def check_pwned(password):
+    sha1 = hashlib.sha1(password.encode()).hexdigest().upper()
+    prefix = sha1[:5]
+    suffix = sha1[5:]
+    try:
+        response = requests.get(f"https://api.pwnedpasswords.com/range/{prefix}")
+        hashes = response.text.splitlines()
+        for line in hashes:
+            h, count = line.split(":")
+            if h == suffix:
+                return int(count)
+        return 0
+    except:
+        return -1
 
 def check_password(password):
     score = 0
@@ -73,11 +90,13 @@ def index():
             password = request.form["password"]
             score, feedback = check_password(password)
             level, color = get_level(score)
+            pwned = check_pwned(password)
             result = {
                 "score": score,
                 "level": level,
                 "color": color,
-                "feedback": feedback
+                "feedback": feedback,
+                "pwned": pwned
             }
         elif "generate" in request.form:
             generated = generate_password()
